@@ -1,8 +1,7 @@
-import edu.wpi.first.gradlerio.GradleRIOPlugin
-
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2020.2.2"
+    id 'io.franzbecker.gradle-lombok' version '3.2.0'
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"
@@ -59,5 +58,5 @@ dependencies {
 // knows where to look for our Robot Class.
 jar {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    manifest GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
 }

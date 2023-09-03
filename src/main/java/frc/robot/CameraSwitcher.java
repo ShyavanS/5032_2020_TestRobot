@@ -5,12 +5,14 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 public class CameraSwitcher {
 
     private String name;
@@ -44,7 +46,7 @@ public class CameraSwitcher {
     }
 
     private UsbCamera getUSBCamera(int id) {
-        var camera = CameraServer.getInstance().startAutomaticCapture(String.format("%s#%d", name, id), id);
+        var camera = CameraServer.getInstance().startAutomaticCapture(String.format("%sSwitcher@USB%d", name, id), id);
         camera.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
         camera.setFPS(60);
         camera.setResolution(320, 240);
